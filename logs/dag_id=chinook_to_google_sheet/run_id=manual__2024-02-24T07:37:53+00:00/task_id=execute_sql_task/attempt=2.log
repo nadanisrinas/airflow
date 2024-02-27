@@ -1,0 +1,56 @@
+[2024-02-24T07:43:13.100+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: chinook_to_google_sheet.execute_sql_task manual__2024-02-24T07:37:53+00:00 [queued]>
+[2024-02-24T07:43:13.142+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: chinook_to_google_sheet.execute_sql_task manual__2024-02-24T07:37:53+00:00 [queued]>
+[2024-02-24T07:43:13.152+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 2
+[2024-02-24T07:43:13.196+0000] {taskinstance.py:2191} INFO - Executing <Task(PostgresOperator): execute_sql_task> on 2024-02-24 07:37:53+00:00
+[2024-02-24T07:43:13.292+0000] {standard_task_runner.py:60} INFO - Started process 2751 to run task
+[2024-02-24T07:43:13.455+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'chinook_to_google_sheet', 'execute_sql_task', 'manual__2024-02-24T07:37:53+00:00', '--job-id', '35', '--raw', '--subdir', 'DAGS_FOLDER/chinook_to_google_sheet.py', '--cfg-path', '/tmp/tmp0gecc34z']
+[2024-02-24T07:43:13.538+0000] {standard_task_runner.py:88} INFO - Job 35: Subtask execute_sql_task
+[2024-02-24T07:43:13.746+0000] {task_command.py:423} INFO - Running <TaskInstance: chinook_to_google_sheet.execute_sql_task manual__2024-02-24T07:37:53+00:00 [running]> on host 442819554f8d
+[2024-02-24T07:43:13.820+0000] {abstractoperator.py:707} ERROR - Exception rendering Jinja template for task 'execute_sql_task', field 'sql'. Template: '../db/chinook.sql'
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/abstractoperator.py", line 699, in _do_render_template_fields
+    rendered_content = self.render_template(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/template/templater.py", line 171, in render_template
+    template = jinja_env.get_template(value)
+  File "/home/airflow/.local/lib/python3.8/site-packages/jinja2/environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "/home/airflow/.local/lib/python3.8/site-packages/jinja2/environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/airflow/.local/lib/python3.8/site-packages/jinja2/loaders.py", line 125, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/jinja2/loaders.py", line 194, in get_source
+    pieces = split_template_path(template)
+  File "/home/airflow/.local/lib/python3.8/site-packages/jinja2/loaders.py", line 35, in split_template_path
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: ../db/chinook.sql
+[2024-02-24T07:43:13.828+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2334, in _run_raw_task
+    self._execute_task_with_callbacks(context, test_mode, session=session)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2465, in _execute_task_with_callbacks
+    task_orig = self.render_templates(context=context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2877, in render_templates
+    original_task.render_template_fields(context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 1241, in render_template_fields
+    self._do_render_template_fields(self, self.template_fields, context, jinja_env, set())
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 79, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/abstractoperator.py", line 699, in _do_render_template_fields
+    rendered_content = self.render_template(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/template/templater.py", line 171, in render_template
+    template = jinja_env.get_template(value)
+  File "/home/airflow/.local/lib/python3.8/site-packages/jinja2/environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "/home/airflow/.local/lib/python3.8/site-packages/jinja2/environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/airflow/.local/lib/python3.8/site-packages/jinja2/loaders.py", line 125, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/jinja2/loaders.py", line 194, in get_source
+    pieces = split_template_path(template)
+  File "/home/airflow/.local/lib/python3.8/site-packages/jinja2/loaders.py", line 35, in split_template_path
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: ../db/chinook.sql
+[2024-02-24T07:43:13.870+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=chinook_to_google_sheet, task_id=execute_sql_task, execution_date=20240224T073753, start_date=20240224T074313, end_date=20240224T074313
+[2024-02-24T07:43:13.881+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 35 for task execute_sql_task (../db/chinook.sql; 2751)
+[2024-02-24T07:43:13.936+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-02-24T07:43:14.032+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

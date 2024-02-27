@@ -1,0 +1,31 @@
+[2024-02-22T18:38:00.826+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dibimbing_example_5.execute_sql manual__2024-02-22T18:37:57+00:00 [queued]>
+[2024-02-22T18:38:00.834+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dibimbing_example_5.execute_sql manual__2024-02-22T18:37:57+00:00 [queued]>
+[2024-02-22T18:38:00.835+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2024-02-22T18:38:00.849+0000] {taskinstance.py:2191} INFO - Executing <Task(PostgresOperator): execute_sql> on 2024-02-22 18:37:57+00:00
+[2024-02-22T18:38:00.874+0000] {standard_task_runner.py:60} INFO - Started process 1899 to run task
+[2024-02-22T18:38:00.883+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'dibimbing_example_5', 'execute_sql', 'manual__2024-02-22T18:37:57+00:00', '--job-id', '63', '--raw', '--subdir', 'DAGS_FOLDER/dibimbing_example_5.py', '--cfg-path', '/tmp/tmpdx4kwj9_']
+[2024-02-22T18:38:00.889+0000] {standard_task_runner.py:88} INFO - Job 63: Subtask execute_sql
+[2024-02-22T18:38:00.978+0000] {task_command.py:423} INFO - Running <TaskInstance: dibimbing_example_5.execute_sql manual__2024-02-22T18:37:57+00:00 [running]> on host 5c4df0f825b2
+[2024-02-22T18:38:01.073+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='dibimbing_example_5' AIRFLOW_CTX_TASK_ID='execute_sql' AIRFLOW_CTX_EXECUTION_DATE='2024-02-22T18:37:57+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-02-22T18:37:57+00:00'
+[2024-02-22T18:38:01.079+0000] {sql.py:276} INFO - Executing: SELECT * FROM my_table
+[2024-02-22T18:38:01.092+0000] {base.py:83} INFO - Using connection ID 'dibimbing_***' for task execution.
+[2024-02-22T18:38:01.108+0000] {base.py:83} INFO - Using connection ID 'dibimbing_***' for task execution.
+[2024-02-22T18:38:01.117+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/operators/sql.py", line 282, in execute
+    output = hook.run(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 391, in run
+    with closing(self.get_conn()) as conn:
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/postgres/hooks/postgres.py", line 158, in get_conn
+    self.conn = psycopg2.connect(**conn_args)
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "***" (172.19.0.2), port 5432 failed: FATAL:  password authentication failed for user "***"
+
+[2024-02-22T18:38:01.138+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=dibimbing_example_5, task_id=execute_sql, execution_date=20240222T183757, start_date=20240222T183800, end_date=20240222T183801
+[2024-02-22T18:38:01.152+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 63 for task execute_sql (connection to server at "***" (172.19.0.2), port 5432 failed: FATAL:  password authentication failed for user "***"
+; 1899)
+[2024-02-22T18:38:01.196+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-02-22T18:38:01.260+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
