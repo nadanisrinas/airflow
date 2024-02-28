@@ -14,7 +14,11 @@ run docker compose up airflow-init
 run docker compose up
 ```
 
-<p>3. run dags</p>
+
+<p>4. open http://localhost:<your_port_for_airflow> at web browser </p>
+
+
+<p>4. run dags</p>
 
 ```
 docker exec <your_airflow_container_name> airflow dags trigger chinook_to_google_sheet
