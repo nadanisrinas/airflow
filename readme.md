@@ -15,7 +15,7 @@ run docker compose up
 ```
 
 
-<p>4. open http://localhost:<your_port_for_airflow> at web browser </p>
+<p>4. open http://localhost:(your_port_for_airflow) at web browser </p>
 
 
 <p>4. run dags</p>
